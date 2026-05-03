@@ -1,0 +1,46 @@
+:root {
+  --primary-pink: #f8c8dc;
+  --soft-pink: #fde4ec;
+  --white: #ffffff;
+  --text-dark: #444;
+  --border: #f3b6cc;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--soft-pink);
+  color: var(--text-dark);
+}
+
+
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  border: 1px solid var(--border);
+}
+
+
+.button {
+  background-color: var(--primary-pink);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button:hover {
+  background-color: #f4a6c1;
+}
+
+
+.input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  width: 100%;
+}
