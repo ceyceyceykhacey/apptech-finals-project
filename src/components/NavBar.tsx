@@ -6,7 +6,7 @@ const NavBar = () => {
 
   return (
     <div className="card">
-      <Link to="/">Customers</Link> | <Link to="/dashboard">Dashboard</Link>
+      <Link to="/customers">Customers</Link> | <Link to="/dashboard">Dashboard</Link>
       <span style={{ marginLeft: 16, fontWeight: 500 }}>Role: {role}</span>
     </div>
   );
