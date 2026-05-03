@@ -106,3 +106,18 @@ body {
   background: var(--pink) !important;
   color: white;
 }
+
+.customer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-button {
+  background: #dc3545 !important;
+  color: white;
+}
+
+.delete-button:hover {
+  background: #c82333 !important;
+}

@@ -9,6 +9,7 @@ interface CustomerContextValue {
   setRole: (role: CustomerRole) => void;
   addCustomer: (name: string) => void;
   updateCustomer: (customer: Customer) => void;
+  deleteCustomer: (id: number) => void;
 }
 
 const CustomerContext = createContext<CustomerContextValue | undefined>(undefined);
@@ -40,8 +41,12 @@ export const CustomerProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
+  const deleteCustomer = (id: number) => {
+    setCustomers((previous) => previous.filter((item) => item.id !== id));
+  };
+
   return (
-    <CustomerContext.Provider value={{ customers, role, setRole, addCustomer, updateCustomer }}>
+    <CustomerContext.Provider value={{ customers, role, setRole, addCustomer, updateCustomer, deleteCustomer }}>
       {children}
     </CustomerContext.Provider>
   );

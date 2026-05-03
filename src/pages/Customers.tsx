@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useCustomerContext } from "../context/CustomerContext";
 
 const Customers = () => {
-  const { customers, addCustomer } = useCustomerContext();
+  const { customers, addCustomer, deleteCustomer, role } = useCustomerContext();
   const [name, setName] = useState("");
 
   const addNewCustomer = () => {
@@ -33,6 +33,14 @@ const Customers = () => {
         customers.map((customer) => (
           <div key={customer.id} className="card customer-row">
             <Link to={`/customer/${customer.id}`}>{customer.name}</Link>
+            {role === "Admin" && (
+              <button
+                className="button delete-button"
+                onClick={() => deleteCustomer(customer.id)}
+              >
+                Delete
+              </button>
+            )}
           </div>
         ))
       )}
