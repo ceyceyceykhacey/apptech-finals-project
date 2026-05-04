@@ -1,13 +1,28 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCustomerContext } from "../context/CustomerContext";
 
 const NavBar = () => {
-  const { role } = useCustomerContext();
+  const navigate = useNavigate();
+  const { role, isAuthenticated, logout } = useCustomerContext();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
-    <div className="card">
-      <Link to="/">Home</Link> | <Link to="/customers">Customers</Link> | <Link to="/dashboard">Dashboard</Link>
-      <span style={{ marginLeft: 16, fontWeight: 500 }}>Role: {role}</span>
+    <div className="card" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
+      <div>
+        <Link to="/">Home</Link> | <Link to="/customers">Customers</Link> | <Link to="/dashboard">Dashboard</Link>
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <span style={{ fontWeight: 500 }}>Role: {isAuthenticated ? role : "Guest"}</span>
+        {isAuthenticated ? (
+          <button className="button secondary-button" onClick={handleLogout}>Logout</button>
+        ) : (
+          <Link to="/login" className="button primary-button">Login</Link>
+        )}
+      </div>
     </div>
   );
 };

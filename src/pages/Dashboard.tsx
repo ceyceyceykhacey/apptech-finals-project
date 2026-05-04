@@ -1,21 +1,18 @@
 import { useCustomerContext } from "../context/CustomerContext";
 
 const Dashboard = () => {
-  const { role, setRole } = useCustomerContext();
+  const { username, role } = useCustomerContext();
 
   return (
     <div>
       <h2>Admin Dashboard</h2>
+      {username && (
+        <p style={{ fontWeight: 600 }}>Signed in as {username}</p>
+      )}
 
       <div className="card">
-        <h3>User Role & Access Management</h3>
+        <h3>User Information</h3>
         <p>Current role: <strong>{role}</strong></p>
-        <button className="button" onClick={() => setRole("Admin")} disabled={role === "Admin"}>
-          Admin
-        </button>
-        <button className="button" onClick={() => setRole("Staff")} disabled={role === "Staff"}>
-          Staff
-        </button>
       </div>
     </div>
   );
