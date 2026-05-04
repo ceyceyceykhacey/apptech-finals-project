@@ -15,7 +15,10 @@ const Home = () => {
         </p>
         <div className="action-buttons" style={{ flexDirection: "column", gap: 12 }}>
           {!isAuthenticated && (
-            <Link to="/login" className="button primary-button">Log In</Link>
+            <>
+              <Link to="/login" className="button primary-button">Log In</Link>
+              <Link to="/signup" className="button secondary-button">Sign Up</Link>
+            </>
           )}
           <div>
             <Link to="/customers" className="button primary-button">View Customers</Link>

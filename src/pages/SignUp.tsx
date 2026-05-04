@@ -2,9 +2,9 @@ import { useState, type FormEvent } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useCustomerContext, type CustomerRole } from "../context/CustomerContext";
 
-const Login = () => {
+const SignUp = () => {
   const navigate = useNavigate();
-  const { login, isAuthenticated } = useCustomerContext();
+  const { signup, isAuthenticated } = useCustomerContext();
   const [username, setUsername] = useState("");
   const [role, setRole] = useState<CustomerRole>("Staff");
   const [error, setError] = useState("");
@@ -20,10 +20,10 @@ const Login = () => {
     }
 
     try {
-      login(trimmedUsername, role);
+      signup(trimmedUsername, role);
       navigate("/");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Unable to log in.");
+      setError(err instanceof Error ? err.message : "Unable to create account.");
     }
   };
 
@@ -35,9 +35,9 @@ const Login = () => {
   return (
     <div className="home-container">
       <div className="welcome-card">
-        <h1 className="welcome-title">Login</h1>
+        <h1 className="welcome-title">Sign Up</h1>
         <p className="welcome-description">
-          Sign in to manage customer data and access your dashboard.
+          Create an account before logging in.
         </p>
         <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: 12, textAlign: "left" }}>
@@ -68,13 +68,13 @@ const Login = () => {
           </div>
           {error && <p className="error">{error}</p>}
           <button type="submit" className="button primary-button" style={{ width: "100%" }}>
-            Log In
+            Sign Up
           </button>
         </form>
         <p style={{ marginTop: 18, textAlign: "center" }}>
-          Don't have an account?{" "}
-          <Link to="/signup" style={{ fontWeight: 600, color: "#007bff" }}>
-            Sign Up
+          Already have an account?{" "}
+          <Link to="/login" style={{ fontWeight: 600, color: "#007bff" }}>
+            Log In
           </Link>
         </p>
       </div>
@@ -82,4 +82,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
