@@ -1,38 +1,27 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import type { Customer } from "../types/Customer";
 
-export type CustomerRole = "Admin" | "Staff";
-
 interface CustomerContextValue {
   customers: Customer[];
-  role: CustomerRole;
-  setRole: (role: CustomerRole) => void;
-  addCustomer: (name: string) => void;
+  addCustomer: (customer: Omit<Customer, "id" | "createdAt">) => void;
   updateCustomer: (customer: Customer) => void;
   deleteCustomer: (id: number) => void;
+  searchCustomers: (query: string) => Customer[];
+  filterCustomers: (filters: { email?: string; address?: string }) => Customer[];
 }
 
 const CustomerContext = createContext<CustomerContextValue | undefined>(undefined);
 
-const defaultRole: CustomerRole = "Admin";
-
 export const CustomerProvider = ({ children }: { children: ReactNode }) => {
   const [customers, setCustomers] = useState<Customer[]>([]);
-  const [role, setRole] = useState<CustomerRole>(defaultRole);
 
-  const addCustomer = (name: string) => {
-    const trimmed = name.trim();
-    if (!trimmed) return;
-
-    setCustomers((previous) => [
-      ...previous,
-      {
-        id: Date.now(),
-        name: trimmed,
-        addresses: [],
-        contacts: [],
-      },
-    ]);
+  const addCustomer = (customerData: Omit<Customer, "id" | "createdAt">) => {
+    const newCustomer: Customer = {
+      ...customerData,
+      id: Date.now(),
+      createdAt: new Date(),
+    };
+    setCustomers((previous) => [...previous, newCustomer]);
   };
 
   const updateCustomer = (customer: Customer) => {
@@ -45,8 +34,43 @@ export const CustomerProvider = ({ children }: { children: ReactNode }) => {
     setCustomers((previous) => previous.filter((item) => item.id !== id));
   };
 
+  const searchCustomers = (query: string): Customer[] => {
+    const lowerQuery = query.toLowerCase();
+    return customers.filter(
+      (customer) =>
+        customer.name.toLowerCase().includes(lowerQuery) ||
+        customer.email.toLowerCase().includes(lowerQuery)
+    );
+  };
+
+  const filterCustomers = (filters: { email?: string; address?: string }): Customer[] => {
+    return customers.filter((customer) => {
+      if (filters.email && !customer.email.toLowerCase().includes(filters.email.toLowerCase())) {
+        return false;
+      }
+      if (
+        filters.address &&
+        !customer.addresses.some((addr) =>
+          addr.value.toLowerCase().includes(filters.address!.toLowerCase())
+        )
+      ) {
+        return false;
+      }
+      return true;
+    });
+  };
+
   return (
-    <CustomerContext.Provider value={{ customers, role, setRole, addCustomer, updateCustomer, deleteCustomer }}>
+    <CustomerContext.Provider
+      value={{
+        customers,
+        addCustomer,
+        updateCustomer,
+        deleteCustomer,
+        searchCustomers,
+        filterCustomers,
+      }}
+    >
       {children}
     </CustomerContext.Provider>
   );

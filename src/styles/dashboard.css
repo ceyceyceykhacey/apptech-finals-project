@@ -1,0 +1,265 @@
+/* Senior-Friendly Admin Dashboard Styles */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 24px;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.dashboard-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 10px 0;
+}
+
+.dashboard-subtitle {
+  font-size: 18px;
+  color: #666;
+  margin: 0;
+}
+
+.access-denied {
+  background: #fff3cd;
+  border: 2px solid #ffc107;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+}
+
+.access-denied h2 {
+  font-size: 28px;
+  color: #856404;
+  margin: 0 0 20px 0;
+}
+
+.access-denied p {
+  font-size: 18px;
+  color: #856404;
+  margin: 0 0 20px 0;
+}
+
+/* Statistics Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.15);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.25);
+}
+
+.stat-icon {
+  font-size: 48px;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-label {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+}
+
+/* Dashboard Sections */
+.dashboard-section {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-section h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 24px 0;
+}
+
+/* Info Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.info-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  border-left: 4px solid #667eea;
+}
+
+.info-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.role-badge {
+  display: inline-block;
+  background: #667eea;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+/* Actions Grid */
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+.action-icon {
+  font-size: 32px;
+}
+
+/* Notes Box */
+.notes-box {
+  background: #f0f4ff;
+  border: 2px solid #e0e0ff;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.notes-box p {
+  font-size: 18px;
+  color: #333;
+  margin: 0 0 16px 0;
+}
+
+.notes-list {
+  font-size: 16px;
+  color: #555;
+  margin: 0;
+  padding-left: 24px;
+}
+
+.notes-list li {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+/* Buttons */
+.btn-primary {
+  padding: 14px 28px;
+  font-size: 18px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 20px 16px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 28px;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .stat-card {
+    padding: 20px;
+  }
+
+  .stat-icon {
+    font-size: 36px;
+  }
+
+  .stat-value {
+    font-size: 24px;
+  }
+
+  .dashboard-section {
+    padding: 24px 16px;
+  }
+
+  .dashboard-section h2 {
+    font-size: 20px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions-grid {
+    grid-template-columns: 1fr;
+  }
+}
